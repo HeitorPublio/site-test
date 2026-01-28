@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/css/index.css">
+    <title>Verificação de Namoro</title>
+</head>
+<body>
+    <div class="verificar">
+        
+        <div class="formulario">
+            <label for="">Digite seu Nome</label>
+            <input type="text" id="nome" placeholder="Digite seu nome livia...">
+            <button onclick="salvarNome()">Confirmar</button>
+        </div>    
+    </div>
+    <script> 
+     function salvarNome() { 
+        const nome = document.getElementById("nome").value.trim(); 
+        // salva no localStorage 
+        localStorage.setItem("nomeUsuario", nome); 
+        
+        // verifica se é diferente de "livia" 
+        if (nome.toLowerCase() !== "Livia", nome.toLowerCase() !== "livia" ) { 
+            window.location.href = "acesso_negado.html";} 
+        else { window.location.href = "verificacao1.html"; } 
+        }
+    </script>
+</body>
+</html>

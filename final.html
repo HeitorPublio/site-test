@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="static/css/index.css">
+    <title>Finalizado</title>
+</head>
+<body>
+    <div class="verificar">
+        <h1>Então Está Marcado <span id="usuario"></span>!</h1>
+        <h2>Selecione a Data e o Horário Mais Adequado.</h2>
+        <div class="formulario">
+            <input type="date" name="data-evento" id="data-evento">
+            <input type="time" id="tempo-evento">
+            <button onclick="confirmarEvento()">Confirmar</button>
+            <br>
+            <span id="mensagem" style="color:green; display:none;"></span>
+        </div>
+    </div>
+
+    <script>
+        // Recupera o nome salvo
+        const nomeSalvo = localStorage.getItem("nomeUsuario");
+        document.getElementById("usuario").textContent = nomeSalvo || "Visitante";
+
+        function confirmarEvento() {
+            const data = document.getElementById("data-evento").value;
+            const hora = document.getElementById("tempo-evento").value;
+            const mensagemSpan = document.getElementById("mensagem");
+
+            if (data && hora) {
+                // Mostra mensagem na tela
+                mensagemSpan.textContent = `Evento marcado para ${data} às ${hora}.`;
+                mensagemSpan.style.display = "inline";
+
+                // Texto para enviar no WhatsApp
+                const texto = `Aqui é ${nomeSalvo}, o evento está marcado para ${data} às ${hora}, não se atrase gatinho.`;
+                
+                // Número de destino (coloque o número com DDI e DDD, ex: 55 para Brasil)
+                const numero = "5577991058953"; // <-- substitua pelo número desejado
+
+                // Monta link do WhatsApp
+                const url = `https://wa.me/${numero}?text=${encodeURIComponent(texto)}`;
+
+                // Abre o WhatsApp
+                window.open(url, "_blank");
+            } else {
+                alert("Por favor, selecione a data e a hora.");
+            }
+        }
+    </script>
+</body>
+</html>

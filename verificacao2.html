@@ -1,0 +1,52 @@
+<!-- paginaPrincipal.html -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Página Principal</title>
+  <link rel="stylesheet" href="/static/css/index.css">
+</head>
+<body>
+    
+    <div class="verificar">
+        <h1>Parabéns <span id="usuario"></span>!</h1>
+        <h2>Você foi selecionada para comer miojo com tekitos lá na cozinha</h2>
+        <h2>com Heitor de Gatão</h2>
+        <span id="mensagem" style="color:red; display:none;">DEU TRABALHO FAZER ISSO, MARCA SIM FIA.</span>
+        
+        <div class="formulario">
+            <h2>Pergunta Eliminatória</h2>
+            <label>Você Aceita?</label>
+            <div class="inputs">
+                <input type="checkbox" id="sim">
+                <label for="sim">Sim</label>
+                <input type="checkbox" id="nao">
+                <label for="nao">Não</label>
+            </div>
+            <button onclick="verificarResposta()">Confirmar</button>
+        </div>    
+    </div>
+
+    <script>
+        // Recupera o nome salvo
+        const nomeSalvo = localStorage.getItem("nomeUsuario");
+        document.getElementById("usuario").textContent = nomeSalvo || "Visitante";
+
+        function verificarResposta() {
+            const sim = document.getElementById("sim").checked;
+            const nao = document.getElementById("nao").checked;
+            const mensagem = document.getElementById("mensagem");
+
+            if (sim && !nao) {
+                // vai para próxima página
+                window.location.href = "final.html";
+            } else if (nao && !sim) {
+                // exibe mensagem
+                mensagem.style.display = "inline";
+            } else {
+                alert("GAROTAS INDECISAS SÃO MEU PONTO FRACO, MAS MARCA SIM.");
+            }
+        }
+    </script>
+</body>
+</html>

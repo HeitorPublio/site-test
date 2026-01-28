@@ -1,0 +1,50 @@
+<!-- paginaPrincipal.html -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Página Principal</title>
+  <link rel="stylesheet" href="/static/css/index.css">
+</head>
+<body>
+    
+    <div class="verificar">
+        <h1>Bem-vindo(a), <span id="usuario"></span>!</h1>
+        <span id="mensagem" style="color:red; display:none;">VOCÊ MARCOU A RESPOSTA ERRADA, A RESPOSTA CERTA É SIM.</span>
+        
+        <div class="formulario">
+            <h2>Pergunta Eliminatória</h2>
+            <label>Você Ainda Está Namorando?</label>
+            <div class="inputs">
+                <input type="checkbox" id="sim">
+                <label for="sim">Sim</label>
+                <input type="checkbox" id="nao">
+                <label for="nao">Não</label>
+            </div>
+            <button onclick="verificarResposta()">Confirmar</button>
+        </div>    
+    </div>
+
+    <script>
+        // Recupera o nome salvo
+        const nomeSalvo = localStorage.getItem("nomeUsuario");
+        document.getElementById("usuario").textContent = nomeSalvo || "Visitante";
+
+        function verificarResposta() {
+            const sim = document.getElementById("sim").checked;
+            const nao = document.getElementById("nao").checked;
+            const mensagem = document.getElementById("mensagem");
+
+            if (sim && !nao) {
+                // vai para próxima página
+                window.location.href = "verificacao2.html";
+            } else if (nao && !sim) {
+                // exibe mensagem
+                mensagem.style.display = "inline";
+            } else {
+                alert("Não precisa ficar indecisa, escolha não.");
+            }
+        }
+    </script>
+</body>
+</html>
