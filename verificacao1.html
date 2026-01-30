@@ -10,6 +10,7 @@
     
     <div class="verificar">
         <h1>Bem-vindo(a), <span id="usuario"></span>!</h1>
+        <span id="mensagem" style="color:red; display:none;">VOCÊ MARCOU A RESPOSTA ERRADA, A RESPOSTA CERTA É NÃO.</span>
         <div class="formulario">
             <h2>Pergunta Eliminatória</h2>
             <label>Você Ainda Está Namorando?</label>
@@ -33,10 +34,10 @@
             const nao = document.getElementById("nao").checked;
             const mensagem = document.getElementById("mensagem");
 
-            if (sim && !nao) {
+            if (nao && !sim) {
                 // vai para próxima página
                 window.location.href = "verificacao2.html";
-            } else if (nao && !sim) {
+            } else if (sim && !nao) {
                 // exibe mensagem
                 mensagem.style.display = "inline";
             } else {
